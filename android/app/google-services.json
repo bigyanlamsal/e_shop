@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "340549793376",
+    "firebase_url": "https://eshop-ac698.firebaseio.com",
+    "project_id": "eshop-ac698",
+    "storage_bucket": "eshop-ac698.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:340549793376:android:9ed350bb0b540d79cb7505",
+        "android_client_info": {
+          "package_name": "com.bigyan.eshop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "340549793376-7taj81jbhfrbdpkgidgna3fs1bh9oq4q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-ifuKOLCTxvjHnSHDcYokVEQgcfaZ7nA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "340549793376-7taj81jbhfrbdpkgidgna3fs1bh9oq4q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

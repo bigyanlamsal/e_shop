@@ -35,12 +35,24 @@ flutter:
     - family: Signatra
       fonts:
         - asset: assets/fonts/Signatra.ttf
+    - family: Amagh_Demo
+      fonts:
+        - asset: assets/fonts/Amagh_Demo.ttf   
+    - family: CrimsonText-Regular
+      fonts:
+        - asset: assets/fonts/CrimsonText-Regular.ttf
+    - family: CrimsonText-SemiBold
+      fonts:
+        - asset: assets/fonts/CrimsonText-SemiBold.ttf    
 
   assets:
     - images/welcome.png
     - images/login.png
     - images/admin.png
     - images/cash.png
+    - images/background1.jpg
+    - images/CartLogo.png
+    - images/man.png
 
 
 

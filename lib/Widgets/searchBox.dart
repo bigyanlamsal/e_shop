@@ -11,7 +11,51 @@ class SearchBoxDelegate extends SliverPersistentHeaderDelegate {
       double shrinkOffset,
       bool overlapsContent
       ) =>
-      InkWell();
+      InkWell(
+        onTap:()
+        {
+         Route route = MaterialPageRoute(builder: (c)=> SearchProduct());
+         Navigator.pushReplacement(context, route);
+        },
+        child: Container(
+          decoration: new BoxDecoration(
+          image:DecorationImage(
+          image: AssetImage('images/background1.jpg'),
+          fit:BoxFit.cover, 
+          ),
+        ),
+        alignment: Alignment.center,
+        width:MediaQuery.of(context).size.width,
+        height: 80.0,
+        child: InkWell(
+          child: Container(
+            margin: EdgeInsets.only(left:10.0,right:10.0),
+            width: MediaQuery.of(context).size.width,
+            height:50.0,
+            decoration: BoxDecoration(
+              color:Colors.white,
+              borderRadius:BorderRadius.circular(6.0),
+
+            ),
+
+            child: Row( 
+              children: [
+                Padding(
+                padding:EdgeInsets.only(left:8.0),
+                child: Icon(
+                  Icons.search,
+                  color: Colors.black,
+                ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left:8.0),
+                  child: Text("Search here.."),
+                )
+            ],),
+          ),
+        ),
+          ),
+      );
 
 
 

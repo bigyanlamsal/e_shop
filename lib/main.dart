@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:e_shop/Counters/BookQuantity.dart';
+import 'package:e_shop/Counters/ItemQuantity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -15,6 +15,10 @@ import 'Store/storehome.dart';
 Future<void> main() async
 {
   WidgetsFlutterBinding.ensureInitialized();
+  
+  EcommerceApp.auth = FirebaseAuth.instance;
+  EcommerceApp.sharedPreferences = await SharedPreferences.getInstance();
+  EcommerceApp.firestore = Firestore.instance;
 
   runApp(MyApp());
 }
@@ -22,13 +26,22 @@ Future<void> main() async
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return  MultiProvider(providers:
+      [
+      ChangeNotifierProvider(create: (c)=> CartItemCounter()),
+      ChangeNotifierProvider(create: (c)=> ItemQuantity()),
+      ChangeNotifierProvider(create: (c)=> AddressChanger()),
+      ChangeNotifierProvider(create: (c)=> TotalAmount()),
+       ],
+    
+        child:MaterialApp(
             title: 'e-Shop',
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
               primaryColor: Colors.green,
             ),
             home: SplashScreen()
+    ),
     );
   }
 }
@@ -41,16 +54,61 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen>
 {
+
+  @override
+  void initState() {
+    super.initState();
+    displaySplash();
+  }
+
+  //----If user is already logged in or not -------
+
+  displaySplash(){
+    Timer(Duration(seconds:5),() async {
+      if(await EcommerceApp.auth.currentUser() != null)
+      {
+        Route route = MaterialPageRoute(builder: (_) => StoreHome());
+        Navigator.pushReplacement(context, route);
+      }
+      else
+      {
+       Route route = MaterialPageRoute(builder: (_) => AuthenticScreen());
+        Navigator.pushReplacement(context, route);
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Center(
-        child: Text(
-            "Welcome to Flutter Firetore eCommerce Course by Coding Cafe.",
-          style: TextStyle(color: Colors.green, fontSize: 20.0),
-          textAlign: TextAlign.center,
+    return new Scaffold(
+      body: Stack(
+        children: <Widget>[
+        Image.asset('images/background1.jpg',
+         fit: BoxFit.cover,
+         width: double.infinity,
+         height: double.infinity,
+         ),
+        
+        Container(
+         child: Center(
+           child: Column(
+             mainAxisAlignment: MainAxisAlignment.center,
+             children: [
+               Image.asset("images/CartLogo.png"),
+               SizedBox(height: 40.0,
+               width: 40.0,),
+               Text(
+                 "Welcome To Mero Pasal..Best Recognizes Best",
+               style:TextStyle(color:Colors.white,
+                      fontFamily: "Amagh_Demo",
+                      fontSize: 30.0),
+               )
+             ],
+           ),
+           ),
         ),
-      ),
+        ],
+      )
     );
   }
 }

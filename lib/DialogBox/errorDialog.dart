@@ -18,12 +18,13 @@ class ErrorAlertDialog extends StatelessWidget
         {
           Navigator.pop(context);
         },
-          color: Colors.red,
+          color: Color(0xFFff0000).withOpacity(0.5),
           child: Center(
             child: Text("OK"),
           ),
         )
       ],
+      backgroundColor: Colors.white70,
     );
   }
 }
